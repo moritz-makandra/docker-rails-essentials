@@ -1,0 +1,8 @@
+on:
+  pull_request:
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: makandra/github-actions/precommit@main/makandra/terraform-aws-modules/blob/main/.github/workflows/precommit.yml#:~:text=name%3A%20pre,actions/precommit%40main
