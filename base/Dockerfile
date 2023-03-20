@@ -14,7 +14,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor > /etc/apt
 ARG DEBIAN_PACKAGES
 RUN apt-get update \
 	&&  DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-	$DEBIAN_PACKAGES \
+	nodejs yarn \
         && rm -rf /var/cache/apt \
 	&& rm -rf /var/lib/apt/lists/*
 
