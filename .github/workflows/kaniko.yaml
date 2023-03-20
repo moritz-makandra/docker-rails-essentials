@@ -1,0 +1,21 @@
+name: Docker build
+on: push
+jobs:
+  kaniko_builder:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        context: ['base']
+        ruby_version: ['2.6.9', '3.1.3']
+    steps:
+      - uses: actions/checkout@master
+      - uses: docker/metadata-action@v4.3.0
+        id: metadata
+        with:
+          images: ghcr.io/${{ github.repository }}
+      - name: Kaniko build
+        uses: int128/kaniko-action@v1
+        with:
+          context: ${{ matrix.context }}
+          file: ${{ matrix.context }}/Dockerfile
+          build-args: "RUBY_VERSION=${{ matrix.ruby_version }}"
